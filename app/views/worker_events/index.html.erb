@@ -1,0 +1,11 @@
+
+
+<h1>Eventos de <%= @worker.name %></h1>
+<ul>
+  <% @events.each do |event| %>
+    <li><strong><%= event.title %></strong> - <%= event.start_time %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Crear nuevo evento para este trabajador', new_event_path(worker_id: @worker.id), class: 'btn btn-primary' %>
+<%= link_to 'Volver a Trabajadores', workers_path %>

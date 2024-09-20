@@ -1,0 +1,8 @@
+<h1>Mis Trabajadores</h1>
+<%= link_to 'Agregar Trabajador', new_worker_path %>
+<ul>
+  <% @workers.each do |worker| %>
+    <li><%= worker.name %> - <%= link_to 'Ver Eventos', worker_events_path(worker) %></li>
+  <% end %>
+</ul>
+
