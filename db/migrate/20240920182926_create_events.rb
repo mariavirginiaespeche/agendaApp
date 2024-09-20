@@ -6,9 +6,10 @@ class CreateEvents < ActiveRecord::Migration[7.2]
       t.datetime :end_time
       t.string :location
       t.string :weather_info
-      t.references :worker, null: false, foreign_key: true
+      t.references :worker, null: true, foreign_key: true  # Permitir nulos
 
       t.timestamps
     end
   end
 end
+

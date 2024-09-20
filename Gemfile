@@ -16,6 +16,12 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem 'httparty' # Para hacer solicitudes HTTP
+#gem 'sendgrid-ruby' # Para enviar correos electrónicos
+gem 'dotenv-rails'
+gem 'sendgrid-ruby', '~> 6.0'
+gem 'jquery-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
