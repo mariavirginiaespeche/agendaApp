@@ -33,3 +33,34 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+
+# Ignore node_modules
+node_modules/
+
+# Dependencias
+node_modules/
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos de construcción
+dist/
+build/
+tmp/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+log/*.log
+
+# Archivos temporales
+*.swp
+
+# Configuraciones de IDE
+.idea/
+.vscode/
