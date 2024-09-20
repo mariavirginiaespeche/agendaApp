@@ -1,0 +1,75 @@
+
+
+
+<h1>Agregar Evento</h1>
+
+<%= form_with(model: @event, local: true) do |form| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :start_time %>
+    <%= form.datetime_select :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time %>
+    <%= form.datetime_select :end_time %>
+  </div>
+
+  <div>
+    <%= form.label :location, "Ciudad, País" %>
+    <%= form.text_field :location, id: 'location' %>
+  </div>
+
+  <div id="weather-info" style="margin-top: 10px;">
+    <!-- Aquí se mostrará la información del clima -->
+  </div>
+
+  <div>
+    <%= form.label :worker_id, "Seleccionar Trabajador" %>
+    <%= form.collection_select :worker_id, Worker.all, :id, :name, { include_blank: 'Ninguno' } %>
+  </div>
+
+  <div>
+    <%= form.submit 'Crear Evento' %>
+  </div>
+<% end %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#location').on('input', function() {
+      var location = $(this).val();
+      if (location.length > 2) {
+        $.get('<%= fetch_weather_events_path %>', { location: location }, function(data) {
+          if (data.success) {
+            $('#weather-info').text('Clima: ' + data.weather);
+          } else {
+            $('#weather-info').text(data.message);
+          }
+        });
+      } else {
+        $('#weather-info').text('');
+      }
+    });
+  });
+</script>
