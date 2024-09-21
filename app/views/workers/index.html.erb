@@ -1,8 +1,16 @@
-<h1>Mis Trabajadores</h1>
-<%= link_to 'Agregar Trabajador', new_worker_path %>
-<ul>
-  <% @workers.each do |worker| %>
-    <li><%= worker.name %> - <%= link_to 'Ver Eventos', worker_events_path(worker) %></li>
-  <% end %>
-</ul>
+<h1 class="text-center my-4">Mis Trabajadores</h1>
 
+<div class="container">
+  <div class="text-end mb-3">
+    <%= link_to 'Agregar Trabajador', new_worker_path, class: 'btn btn-primary' %>
+  </div>
+
+  <ul class="list-group mx-auto" style="max-width: 950px;">
+    <% @workers.each do |worker| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= worker.name %>
+        <%= link_to 'Ver Eventos', worker_events_path(worker), class: 'btn btn-info btn-sm' %>
+      </li>
+    <% end %>
+  </ul>
+</div>
