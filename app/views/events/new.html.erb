@@ -1,6 +1,3 @@
-
-
-
 <h1>Agregar Evento</h1>
 
 <%= form_with(model: @event, local: true) do |form| %>
@@ -43,11 +40,15 @@
   <div id="weather-info" style="margin-top: 10px;">
     <!-- Aquí se mostrará la información del clima -->
   </div>
+    
 
-  <div>
-    <%= form.label :worker_id, "Seleccionar Trabajador" %>
-    <%= form.collection_select :worker_id, Worker.all, :id, :name, { include_blank: 'Ninguno' } %>
-  </div>
+<div class="field">
+  <%= form.label :worker_id %>
+  <%= form.select :worker_id, @workers.map { |worker| [worker.name, worker.id] }, { include_blank: true, selected: @selected_worker_id } %>
+</div>
+
+
+  
 
   <div>
     <%= form.submit 'Crear Evento' %>
@@ -73,3 +74,4 @@
     });
   });
 </script>
+
