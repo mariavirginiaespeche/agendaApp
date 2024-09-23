@@ -1,3 +1,42 @@
+# <div class="container">
+#   <h1 class="text-center">Mis Eventos</h1>
+#   <%= link_to 'Agregar Evento', new_event_path, class: 'btn btn-primary mb-3' %>
+#   <%= link_to 'Ver Trabajadores', workers_path, class: 'btn btn-primary mb-3' %>
+  
+
+#   <table class="table table-bordered">
+#     <thead class="thead-light">
+#       <tr>
+#         <th>Título</th>
+#         <th>Fecha y Hora</th>
+#         <th>Ubicación</th>
+#         <th>Clima</th>
+#         <th>Acciones</th>
+#       </tr>
+#     </thead>
+#     <tbody>
+#       <% @events.each do |event| %>
+#         <tr>
+#           <td><%= event.title %></td>
+#           <td><%= event.start_time.strftime("%d de %B, %Y a las %H:%M") %></td>
+#           <td><%= event.location.present? ? event.location : 'No disponible' %></td>
+#           <td>
+#             <% if event.weather_info.present? %>
+#               <%= event.weather_info %>
+#             <% else %>
+#               Cargando...
+#             <% end %>
+#           </td>
+#           <td>
+            
+#             <%= link_to 'Eliminar', event, method: :delete, data: { confirm: '¿Estás seguro de que quieres eliminar este evento?' }, class: 'btn btn-danger btn-sm' %>
+#           </td>
+#         </tr>
+#       <% end %>
+#     </tbody>
+#   </table>
+# </div>
+
 <div class="container">
   <h1 class="text-center">Mis Eventos</h1>
   <%= link_to 'Agregar Evento', new_event_path, class: 'btn btn-primary mb-3' %>
@@ -28,8 +67,13 @@
             <% end %>
           </td>
           <td>
-            
-            <%= link_to 'Eliminar', event, method: :delete, data: { confirm: '¿Estás seguro de que quieres eliminar este evento?' }, class: 'btn btn-danger btn-sm' %>
+          
+
+          <%= form_with(url: event, method: :delete, data: { confirm: '¿Estás seguro de que quieres eliminar este evento?' }, local: true) do %>
+  <%= submit_tag 'Eliminar', class: 'btn btn-danger btn-sm' %>
+<% end %>
+
+           
           </td>
         </tr>
       <% end %>

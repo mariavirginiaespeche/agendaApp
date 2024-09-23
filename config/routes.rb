@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   
   resources :workers do
-    resources :events, only: [:index], controller: 'worker_events' # Asegúrate de que sea este controlador
+    resources :events, only: [:index], controller: 'worker_events' 
   end
   
   root 'events#index'
