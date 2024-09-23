@@ -10,6 +10,7 @@
         <th>Título</th>
         <th>Fecha y Hora</th>
         <th>Ubicación</th>
+        <th>Trabajador</th>
         <th>Clima</th>
         <th>Acciones</th>
       </tr>
@@ -20,6 +21,15 @@
           <td><%= event.title %></td>
           <td><%= event.start_time.strftime("%d de %B, %Y a las %H:%M") %></td>
           <td><%= event.location.present? ? event.location : 'No disponible' %></td>
+          
+          <td>
+            <% if event.worker %>
+              <%= event.worker.name %> <!-- Muestra el nombre del trabajador -->
+            <% else %>
+              Sin trabajador
+            <% end %>
+          </td>
+          
           <td>
             <% if event.weather_info.present? %>
               <%= event.weather_info %>
