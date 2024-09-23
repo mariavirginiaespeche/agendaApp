@@ -137,6 +137,11 @@
 class EventsController < ApplicationController
   def index
     @events = Event.order(start_time: :asc)
+
+    respond_to do |format|
+      format.html 
+      format.json { render json: @events }
+    end
   end
 
   def new
