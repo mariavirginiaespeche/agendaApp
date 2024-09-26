@@ -35,13 +35,25 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  user_name: 'apikey', # Este es el nombre de usuario para SendGrid
+  password: ENV['SENDGRID_API_KEY'], # Tu API Key de SendGrid
+  domain: 'virginia.espechekaram@gmail.com', # Cambia esto por tu dominio
+  address: 'smtp.sendgrid.net',
+  port: 587,
+  authentication: :plain,
+  enable_starttls_auto: true,
+  openssl_verify_mode: 'none' # Deshabilita la verificación del certificado SSL
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
